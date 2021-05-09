@@ -23,6 +23,8 @@ import org.junit.jupiter.api.MethodOrderer.MethodName;
 import com.thoughtworks.qdox.JavaDocBuilder;
 import com.thoughtworks.qdox.model.JavaSource;
 
+import gui.Main;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
