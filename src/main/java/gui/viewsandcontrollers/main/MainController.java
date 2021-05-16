@@ -36,6 +36,12 @@ import negocio.modal.Libro;
 
 public class MainController implements Initializable {
 
+	private static BibliotecaService programa = BibliotecaImpl.getInstance();
+
+	/**
+	 * Variables de la clase
+	 */
+
 	@FXML
 	private TableView<Libro> tableView;
 
@@ -69,16 +75,21 @@ public class MainController implements Initializable {
 	@FXML
 	private Button buttonCargar;
 
-	private StringProperty texto = new SimpleStringProperty();
-
-	private static BibliotecaService programa = BibliotecaImpl.getInstance();
-
+	/**
+	 * Realizar un seguimiento de los cambios
+	 * Es una interfaz de lista de JavaFX, y se usa FXCollections
+	 * para equipar una lista con la funcionalidad adicional.
+	 */
 	private static ObservableList<Libro> lista = FXCollections.observableArrayList(programa.getCatalogo());
 
 	// Metodo que arranca el controlador
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		/**
+		 * Cada variable llama a PropertyValueFactory que crea una nueva propiedad con el mismo nombre
+		 */
 
 		titulo.setCellValueFactory(new PropertyValueFactory<Libro, String>("titulo"));
 		isbn.setCellValueFactory(new PropertyValueFactory<Libro, String>("isbn"));
@@ -86,11 +97,16 @@ public class MainController implements Initializable {
 		autor.setCellValueFactory(new PropertyValueFactory<Libro, String>("autor"));
 		paginas.setCellValueFactory(new PropertyValueFactory<Libro, Integer>("paginas"));
 
+		/**
+		 * Desactiva los botones de guardar y editar a menos que esté seleccionado un libro con el cursor
+		 */
+		
 		buttonEditar.disableProperty().bind(tableView.getSelectionModel().selectedItemProperty().isNull());
 		buttonBorrar.disableProperty().bind(tableView.getSelectionModel().selectedItemProperty().isNull());
 
-		Notifications.subscribe(Notifications.CATALOGO_UPDATED, this, this::update);
+		Notifications.subscribe(Notifications.CATALOGO_UPDATED, this, this::actualizarCatalogo);
 
+		//Muestra los libros en la Gestion de Biblioteca
 		tableView.setItems(lista);
 	}
 
@@ -127,6 +143,10 @@ public class MainController implements Initializable {
 			fcontroller = new FController(libro);
 		}
 
+		
+		/**
+		 * Genera una nueva ventana
+		 */
 		fxmlLoader.setController(fcontroller);
 		Parent root1 = fxmlLoader.load();
 		stage.setScene(new Scene(root1));
@@ -136,7 +156,7 @@ public class MainController implements Initializable {
 	}
 
 	/**
-	 * Consiste en editar un libro ya creado anteriormente
+	 * Consiste en editar un libro ya creado anteriormente seleccionandolo
 	 * 
 	 * @param event
 	 * @throws IOException
@@ -145,10 +165,14 @@ public class MainController implements Initializable {
 	private void buttonEditar(ActionEvent event) throws IOException {
 		Libro libroEditar = tableView.getSelectionModel().getSelectedItem();
 		formAction(event, libroEditar);
-
-//		formAction(event, null);
 	}
 
+	/**
+	 * Elimina el libro seleccionado por el usuario
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void buttonBorrar(ActionEvent event) throws IOException {
 
@@ -165,6 +189,12 @@ public class MainController implements Initializable {
 
 	}
 
+	/**
+	 * Guarda el catalogo en un fichero XML
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void buttonGuardar(ActionEvent event) throws IOException {
 
@@ -179,6 +209,12 @@ public class MainController implements Initializable {
 
 	}
 
+	/**
+	 * Introduce al catalogo un fichero XML creado anteriormente
+	 * 
+	 * @param event
+	 * @throws IOException
+	 */
 	@FXML
 	private void buttonCargar(ActionEvent event) throws IOException {
 
@@ -196,11 +232,11 @@ public class MainController implements Initializable {
 	}
 
 	/**
-	 * Actualiza el catálogo con lo nuevo añadido
+	 * Actualiza el catalogo con lo nuevo añadido
 	 * 
 	 * @param event
 	 */
-	private void update(String event) {
+	private void actualizarCatalogo(String event) {
 		lista = FXCollections.observableArrayList(programa.getCatalogo());
 		tableView.setItems(lista);
 		tableView.refresh();

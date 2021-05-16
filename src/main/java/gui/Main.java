@@ -11,6 +11,17 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 	
+	/**
+	 * Metodo Start se define todos los componentes que queremos que se muestre
+	 * 
+	 * Se crea un Stage, es una representacion JavaFX de una ventana.
+	 * Se crea un objeto de tipo scene, es un contenedor para la grafica de JavaFX
+	 * 
+	 * 
+	 * Todos los elementos JavaFX scene se representan como objetos de nodo, en este caso de root
+	 * El nodo raíz es el único nodo que no tiene un padre y genera contenido directamente en scene
+	 * 
+	 */
 	@Override
 	public void start(Stage stage) throws Exception {
 		  Parent root = FXMLLoader.load(getClass().getResource("viewsandcontrollers/main/Main.fxml"));
@@ -20,6 +31,10 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Carga la localizacion de la libreria del programa para utilizar java fx
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

@@ -27,8 +27,10 @@ import negocio.modal.Libro;
 
 public class FController {
 
+	//Negocio viewModel
 	private LibroViewModel viewModel = new LibroViewModel();
 
+	//Variables FXML
 	@FXML
 	private TextField txtTitulo;
 
@@ -51,12 +53,20 @@ public class FController {
 	private Button buttonCancelar;
 
 	boolean action;
+	
 
+	/**
+	 * Constructor sobreCargado
+	 * @param libro
+	 */
 	public FController(Libro libro) {
 		action = false;
 		viewModel = LibroConverter.toLibroVM(libro);
 	}
 
+	/**
+	 * Constructor por defecto
+	 */
 	public FController() {
 		action = true;
 	}
@@ -91,6 +101,9 @@ public class FController {
 
 	}
 
+	/**
+	 * Introduce la informacion que rellena el usuario en las columnas
+	 */
 	private void binViewModel() {
 		txtTitulo.textProperty().bindBidirectional(viewModel.tituloProperty());
 		txtIsbn.textProperty().bindBidirectional(viewModel.isbnProperty());

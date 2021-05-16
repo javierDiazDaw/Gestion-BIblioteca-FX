@@ -3,6 +3,11 @@ package gui.viewsandcontrollers.form.viewmodel;
 import negocio.modal.Genero;
 import negocio.modal.Libro;
 
+/**
+ * Clase que convierte un libro normal en un libroViewModel, cambia el tipo del libro
+ * @author javiq
+ *
+ */
 public class LibroConverter {
 
 	public static Libro toLibro(LibroViewModel viewModel) {

@@ -1,6 +1,5 @@
 package gui.viewsandcontrollers.form.viewmodel;
 
-
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -12,7 +11,16 @@ import negocio.BibliotecaService;
 import negocio.impl.BibliotecaImpl;
 import negocio.modal.Genero;
 
+/**
+ * Clase compatible con JavaFX y ObservableList
+ * 
+ * @author javiq
+ *
+ */
 public class LibroViewModel {
+
+	//Negocio
+	private BibliotecaService negocio = BibliotecaImpl.getInstance();
 
 	private StringProperty titulo = new SimpleStringProperty();
 	private StringProperty isbn = new SimpleStringProperty();
@@ -20,16 +28,16 @@ public class LibroViewModel {
 	private ObjectProperty<Pair<String, String>> genero = new SimpleObjectProperty();
 	private IntegerProperty paginas = new SimpleIntegerProperty();
 
-	private BibliotecaService negocio = BibliotecaImpl.getInstance();
-
+	//Constructor LibroViewModel
 	public LibroViewModel() {
 		genero.setValue(new Pair<String, String>(Genero.NOVELA.toString(), Genero.NOVELA.toString()));
 	}
 
+	//Constructor sobrecargado LibroViewModel
 	public LibroViewModel(String titulo, String isbn, String genero, String autor, int paginas) {
 		setTitulo(titulo);
 		setIsbn(isbn);
-		setGenero(new Pair<String, String>(genero,genero));
+		setGenero(new Pair<String, String>(genero, genero));
 		setAutor(autor);
 		setPaginas(paginas);
 	}
@@ -92,12 +100,6 @@ public class LibroViewModel {
 
 	public StringProperty tituloProperty() {
 		return titulo;
-	}
-
-	@Override
-	public String toString() {
-		return "LibroViewModel [titulo=" + titulo + ", isbn=" + isbn + ", autor=" + autor + ", genero=" + genero
-				+ ", paginas=" + paginas + ", negocio=" + negocio + "]";
 	}
 
 	public boolean create() {

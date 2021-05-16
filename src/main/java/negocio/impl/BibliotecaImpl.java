@@ -13,6 +13,9 @@ public class BibliotecaImpl implements BibliotecaService {
 	private static BibliotecaImpl program = null;
 	private static List<Libro> catalogo;
 
+	/**
+	 * Contructor que no recibe parametros y solo es usada en esta clase
+	 */
 	private BibliotecaImpl() {
 		catalogo = new ArrayList<Libro>();
 
@@ -25,6 +28,10 @@ public class BibliotecaImpl implements BibliotecaService {
 		catalogo.add(libro3);
 	}
 
+	/**
+	 * Metodo que devuelve la instancia
+	 * @return program
+	 */
 	public static BibliotecaImpl getInstance() {
 		if (program == null)
 			program = new BibliotecaImpl();
@@ -45,6 +52,7 @@ public class BibliotecaImpl implements BibliotecaService {
 
 	public boolean editar(Libro libro) {
 
+		
 		boolean devolver = false;
 		for (Libro l : catalogo) {
 			int pos = catalogo.indexOf(l);
@@ -66,7 +74,7 @@ public class BibliotecaImpl implements BibliotecaService {
 	public boolean salvar(String fichero) {
 		boolean retorno = false;
 
-		ClaseXML.getXML(fichero);
+		ClaseXML.guardarXML(fichero);
 
 		return retorno;
 	}
