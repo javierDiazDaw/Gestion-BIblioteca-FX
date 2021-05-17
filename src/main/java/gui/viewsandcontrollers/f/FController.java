@@ -76,6 +76,12 @@ public class FController {
 		binViewModel();
 
 	}
+	
+	/**
+	 * valor y clave (lo que muestra)
+	 * 
+	 * se recoge el key
+	 */
 
 	private void initChoice() {
 

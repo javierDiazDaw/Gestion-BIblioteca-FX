@@ -35,6 +35,12 @@ import negocio.modal.Genero;
 import negocio.modal.Libro;
 
 public class MainController implements Initializable {
+	
+	/**
+	 * La capa de negocio expone la lógica necesaria a la capa de presentación
+	 * para que el usuario a través de la interfaz interactúe con las funcionalidades
+	 * de la aplicación.
+	 */
 
 	private static BibliotecaService programa = BibliotecaImpl.getInstance();
 

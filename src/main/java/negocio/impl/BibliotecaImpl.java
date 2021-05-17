@@ -55,10 +55,11 @@ public class BibliotecaImpl implements BibliotecaService {
 		
 		boolean devolver = false;
 		for (Libro l : catalogo) {
+			if (libro.getIsbn().equals(l.getIsbn())) {
 			int pos = catalogo.indexOf(l);
 			catalogo.set(pos, libro);
 			devolver = true;
-			break;
+			}
 		}
 		return devolver;
 
