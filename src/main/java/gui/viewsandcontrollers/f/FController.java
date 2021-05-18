@@ -1,22 +1,17 @@
 package gui.viewsandcontrollers.f;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import gui.Notifications;
 import gui.viewsandcontrollers.form.viewmodel.LibroConverter;
 import gui.viewsandcontrollers.form.viewmodel.LibroViewModel;
-import javafx.application.Application;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Pair;
@@ -74,6 +69,9 @@ public class FController {
 	public void initialize() {
 		initChoice();
 		binViewModel();
+		if (action == false) {
+			txtIsbn.setEditable(false);
+		}
 
 	}
 	

@@ -8,6 +8,7 @@
 
 plugins {
        id 'application' //Incluye el plugin java
+       id 'org.openjfx.javafxplugin' version '0.0.9'
        id 'eclipse' 
        id 'jacoco'
 }
@@ -15,6 +16,11 @@ plugins {
 application {
     mainClass = 'clases.Main'
 }
+
+javafx {
+	    version = "11.0.2"    
+	    modules = [ 'javafx.controls', 'javafx.fxml' ]
+	}
 
 java{
     toolchain {

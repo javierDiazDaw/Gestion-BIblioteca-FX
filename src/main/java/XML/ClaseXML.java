@@ -23,6 +23,8 @@ import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import negocio.BibliotecaService;
 import negocio.impl.BibliotecaImpl;
 import negocio.modal.Genero;
@@ -35,6 +37,8 @@ import negocio.modal.Libro;
  */
 public class ClaseXML {
 
+	//Modelo programa de la clase ClaseXML
+	
 	private static BibliotecaService programa = BibliotecaImpl.getInstance();
 
 	// creacion de una lista de tipo libro
@@ -208,7 +212,12 @@ public class ClaseXML {
 			}
 
 		} catch (ParserConfigurationException | SAXException | IOException ex) {
-			System.out.println(((Throwable) ex).getMessage());
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Problema con el archivo");
+			alert.setContentText("Archivo no encontrado");
+			alert.showAndWait();
+		
 		}
 	}
 
